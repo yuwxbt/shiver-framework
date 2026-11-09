@@ -82,4 +82,4 @@ Use `shiver new command ping` to scaffold a feature, `shiver check` to validate 
 
 The documentation website renders the Markdown files in [docs/](docs/) from this repository. Edit those files to update both presentations.
 
-[Documentation](docs/getting-started.md) ? [Complete agent API](AGENTS.md) ? [Migration](docs/migrating-from-v2.md)
+[Documentation](docs/getting-started.md) - [Complete agent API](AGENTS.md) - [Migration](docs/migrating-from-v2.md)
