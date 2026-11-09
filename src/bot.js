@@ -208,7 +208,11 @@ export class Bot extends EventEmitter {
         }
         registry.commands.set(key, def);
         if (def.type === 'slash' && def.prefix !== false) {
-          for (const name of [def.name, ...(def.aliases ?? [])]) registry.prefixes.set(name.toLowerCase(), def);
+          for (const name of [def.name, ...(def.aliases ?? [])]) {
+            const taken = registry.prefixes.get(name.toLowerCase());
+            if (taken && taken !== def) throw new ShiverError('DUPLICATE', `Prefix name "${name}" of command "${def.name}" is already used by command "${taken.name}"${at}. Rename the alias or set prefix: false on one of them.`);
+            registry.prefixes.set(name.toLowerCase(), def);
+          }
         }
         break;
       }
@@ -531,7 +535,8 @@ export class Bot extends EventEmitter {
     if (this.options.watch && this.options.dir) this.#watch();
 
     const s = this.summary;
-    this.log.info(`Ready as ${this.client.user.tag} — ${s.commands} commands, ${s.components + s.modals} component handlers, ${s.events} events, ${s.tasks} tasks`);
+    const count = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+    this.log.info(`Ready as ${this.client.user.tag}: ${count(s.commands, 'command')}, ${count(s.components + s.modals, 'component handler')}, ${count(s.events, 'event')}, ${count(s.tasks, 'task')}`);
     this.emit('ready', this);
     return this;
   }
@@ -645,20 +650,21 @@ export class Bot extends EventEmitter {
   }
 
   async #run(ctx, nodes, handler) {
-    const first = nodes[0];
-    const leaf = nodes.at(-1);
-    const defer = leaf.defer ?? first.defer;
+    const defer = nodes.findLast((node) => node.defer !== undefined)?.defer;
     let timer = null;
-    try {
-      if (ctx.isInteraction && ctx.kind !== 'autocomplete') {
-        if (defer === 'update') await ctx.deferUpdate();
-        else if (defer) await ctx.defer({ ephemeral: defer === 'ephemeral' ? true : undefined });
+    const acknowledge = async (c, next) => {
+      if (c.isInteraction && c.kind !== 'autocomplete') {
+        if (defer === 'update') await c.deferUpdate();
+        else if (defer) await c.defer({ ephemeral: defer === 'ephemeral' ? true : undefined });
         else if (defer !== false && this.options.autoDefer) {
           const wait = this.options.autoDefer === true ? 2000 : ms(this.options.autoDefer);
-          timer = setTimeout(() => (ctx.kind === 'command' ? ctx.defer() : ctx.deferUpdate()).catch(() => {}), wait);
+          timer = setTimeout(() => (c.kind === 'command' ? c.defer() : c.deferUpdate()).catch(() => {}), wait);
         }
       }
-      const stack = [...this.middleware, ...nodes.flatMap(guardsFor)];
+      return next();
+    };
+    try {
+      const stack = [...this.middleware, ...nodes.flatMap(guardsFor), acknowledge];
       await compose(stack, handler)(ctx);
       this.emit('handled', ctx);
     } catch (error) {
@@ -719,7 +725,7 @@ export class Bot extends EventEmitter {
       kind: 'command',
       command: def,
       options: readInteractionOptions(interaction, leaf.options),
-      ephemeral: leaf.ephemeral ?? def.ephemeral,
+      ephemeral: chain.findLast((node) => node.ephemeral !== undefined)?.ephemeral,
     });
     await this.#run(ctx, chain, (c) => leaf.run(c, c.options));
   }

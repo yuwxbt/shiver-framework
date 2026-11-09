@@ -170,3 +170,37 @@ test('context menu commands receive the target', async () => {
   const report = defineCommand({ type: 'message', name: 'Report', run: (ctx, message) => ctx.reply(`reported ${message.id}`) });
   assert.equal((await runCommand(report, { target: { id: 'm1' } })).text, 'reported m1');
 });
+
+test('guards reject privately even when the command defers publicly', async () => {
+  const cmd = defineCommand({ name: 'slowmod', description: 'x', defer: true, permissions: ['KickMembers'], run: (ctx) => ctx.reply('ok') });
+  const denied = await runCommand(cmd);
+  assert.deepEqual(denied.replies.map((r) => [r.method, r.ephemeral]), [['reply', true]]);
+  assert.deepEqual((await runCommand(cmd, { permissions: ['KickMembers'] })).replies.map((r) => r.method), ['defer', 'edit']);
+});
+
+test('subcommand groups pass defer and ephemeral down', async () => {
+  const cmd = defineCommand({
+    name: 'admin',
+    description: 'x',
+    subcommands: { logs: { description: 'Logs', ephemeral: true, defer: true, subcommands: { show: { description: 'Show', run: (ctx) => ctx.reply('done') } } } },
+  });
+  const r = await runCommand(cmd, { sub: ['logs', 'show'] });
+  assert.deepEqual(r.replies.map((x) => x.method), ['defer', 'edit']);
+  assert.equal(r.replies[0].flags, 64);
+});
+
+test('runCommand fills missing options like a real interaction', async () => {
+  const cmd = defineCommand({
+    name: 'greet',
+    description: 'x',
+    options: { name: opt.string('Name'), times: opt.integer('Times', { default: 2 }) },
+    run: (ctx, { name, times }) => ctx.reply(`${name}:${times}`),
+  });
+  assert.equal((await runCommand(cmd)).text, 'null:2');
+});
+
+test('a prefix alias cannot shadow another command', () => {
+  const bot = createTestBot({ prefix: '!' });
+  bot.add(defineCommand({ name: 'help', description: 'x', run() {} }));
+  assert.throws(() => bot.add(defineCommand({ name: 'support', description: 'x', aliases: ['help'], run() {} })), (e) => e.code === 'DUPLICATE' && /already used by command "help"/.test(e.message));
+});

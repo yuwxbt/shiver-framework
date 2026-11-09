@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node --watch-path=./src bot.js",
-    "start": "node bot.js",
+    "dev": "node --env-file-if-exists=.env --watch-path=./src bot.js",
+    "start": "node --env-file-if-exists=.env bot.js",
     "check": "shiver check",
     "sync": "shiver sync",
     "test": "node --test"

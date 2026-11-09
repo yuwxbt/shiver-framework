@@ -1,7 +1,7 @@
 import { PermissionsBitField } from 'discord.js';
 import { Bot } from './bot.js';
 import { Context } from './context.js';
-import { compilePattern, KIND } from './define.js';
+import { compilePattern, KIND, resolveLeaf } from './define.js';
 import { ShiverError } from './errors.js';
 import { toPlain } from './ui/message.js';
 
@@ -120,7 +120,11 @@ function result(ctx, replies, error) {
 
 export function runCommand(def, o = {}) {
   if (def?.[KIND] !== 'command') throw new ShiverError('INVALID_DEFINITION', 'runCommand() takes a value created by defineCommand().');
-  return run('command', def, o, { command: def, options: o.options ?? {}, target: o.target ?? null });
+  const { leaf, chain } = def.type === 'slash' ? resolveLeaf(def, [o.sub ?? []].flat()) : { leaf: def, chain: [def] };
+  const options = { ...o.options };
+  for (const [name, option] of Object.entries(leaf.options ?? {})) options[name] ??= option.default ?? null;
+  const ephemeral = chain.findLast((node) => node.ephemeral !== undefined)?.ephemeral;
+  return run('command', def, o, { command: def, options, target: o.target ?? null, ephemeral });
 }
 
 export async function runPrefix(def, o = {}) {

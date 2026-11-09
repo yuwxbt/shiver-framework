@@ -22,10 +22,19 @@ Options
   --json          check/sync: print machine-readable output
 `;
 
-const { values, positionals } = parseArgs({
-  allowPositionals: true,
-  options: { dir: { type: 'string', default: './src' }, guild: { type: 'string' }, prune: { type: 'boolean' }, 'dry-run': { type: 'boolean' }, json: { type: 'boolean' }, help: { type: 'boolean', short: 'h' } },
-});
+let parsed;
+try {
+  parsed = parseArgs({
+    allowPositionals: true,
+    options: { dir: { type: 'string', default: './src' }, guild: { type: 'string' }, prune: { type: 'boolean' }, 'dry-run': { type: 'boolean' }, json: { type: 'boolean' }, help: { type: 'boolean', short: 'h' } },
+  });
+} catch (error) {
+  console.error(`${error.message}
+
+${HELP}`);
+  process.exit(1);
+}
+const { values, positionals } = parsed;
 const [command, target, name] = positionals;
 
 async function load(extra = {}) {

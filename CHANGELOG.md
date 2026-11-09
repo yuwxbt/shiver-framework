@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.1
+
+### Changed
+
+- Node 22.13 or later is required, because `SqliteStore` uses the built-in `node:sqlite` module.
+- Guards run before `defer`, so a rejected user always gets a private reply.
+- `defer` and `ephemeral` set on a subcommand group apply to the subcommands inside it.
+- The starter project's `dev` and `start` scripts load `.env` before `bot.js` runs, so `DEV_GUILD` works from `.env`.
+- The guides are rewritten with complete examples and reference tables, and three are new: CLI, events and tasks, and plugins.
+
+### Fixed
+
+- A prefix alias that matches another command's name is reported at load time.
+- `runCommand` fills missing options with their default or `null`, and applies a subcommand's `ephemeral`, as a real interaction does.
+- The CLI prints usage for an unknown flag.
+- The startup log line uses singular and plural counts correctly.
+
 ## 3.0.0
 
 ### Added

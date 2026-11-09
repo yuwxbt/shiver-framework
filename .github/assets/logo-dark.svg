@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 104" role="img" aria-label="shiver.js">
+  <g transform="translate(6 6) scale(.36)">
+    <path fill="#aad0f5" d="M0 82 150 127v54L0 136z"/>
+    <path fill="#f2f5fa" d="M0 82 153 0v54L0 136zm0 117 150-72v54L0 256z"/>
+  </g>
+  <text x="82" y="72" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700" letter-spacing="-2.5" fill="#f2f5fa">shiver<tspan fill="#aad0f5">.js</tspan></text>
+</svg>
