@@ -1,18 +1,21 @@
 # Shiver Framework
 
-> ESM Discord framework for Node 22.12+ and discord.js 14.28. One definition supports slash and prefix commands.
+> ESM Discord framework for Node 22.13+ and discord.js 14.28. One definition supports slash and prefix commands.
 
 ## Documentation
 
 - [Agent API reference](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/AGENTS.md)
+- [CLI](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/cli.md)
 - [Commands](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/commands.md)
 - [Components and modals](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/components.md)
 - [Configuration](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/configuration.md)
 - [Deployment](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/deploy.md)
 - [Errors](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/errors.md)
+- [Events and tasks](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/events-and-tasks.md)
 - [Getting started](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/getting-started.md)
 - [Messages](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/messages.md)
 - [Middleware](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/middleware.md)
 - [Migrating from v2](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/migrating-from-v2.md)
+- [Plugins](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/plugins.md)
 - [Storage](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/store.md)
 - [Testing](https://raw.githubusercontent.com/yuwxbt/shiver-framework/main/docs/testing.md)

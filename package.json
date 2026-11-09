@@ -1,10 +1,10 @@
 {
   "name": "shiver-framework",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A small, fast Discord bot framework on discord.js. One command definition for slash and prefix, every Discord component as a plain function, and errors that tell you how to fix them.",
   "type": "module",
   "engines": {
-    "node": ">=22.12"
+    "node": ">=22.13"
   },
   "exports": {
     ".": {
@@ -55,7 +55,7 @@
     "components-v2",
     "modals"
   ],
-  "author": "yuwxd",
+  "author": "yuwxbt",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",

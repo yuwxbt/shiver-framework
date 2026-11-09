@@ -1,6 +1,6 @@
 # Shiver Framework v3
 
-Use Node 22.12+ and discord.js ^14.28. Shiver is ESM. Import runtime helpers from `shiver-framework` and offline runners from `shiver-framework/testing`.
+Use Node 22.13+ and discord.js ^14.28. Shiver is ESM. Import runtime helpers from `shiver-framework` and offline runners from `shiver-framework/testing`.
 
 ## Project conventions
 
@@ -10,7 +10,7 @@ Run `npm run check` after changes. The starter's check validates definitions off
 
 ## Bot and registration
 
-- `createBot(options?)` or `new Bot(options?)`. Common settings are `dir`, `token`, `env`, `sync`, `prefix`, `mentionPrefix`, `devGuild`, `intents`, `client`, `store`, `use`, `owners`, `ownersBypassCooldown`, `ephemeral` on definitions, `allowedMentions`, `validate`, `autoDefer`, `locales`, `defaultLocale`, `messages`, `onError`, `logLevel`, `logger`, `watch`, `signals`, and `catchUnhandled`.
+- `createBot(options?)` or `new Bot(options?)`. Common settings are `dir`, `token`, `env`, `sync`, `prefix`, `mentionPrefix`, `devGuild`, `intents`, `client`, `store`, `use`, `owners`, `ownersBypassCooldown`, `allowedMentions`, `validate`, `autoDefer`, `locales`, `defaultLocale`, `messages`, `onError`, `logLevel`, `logger`, `watch`, `signals`, and `catchUnhandled`.
 - `bot.add(...definitions)`, `bot.use(...middleware)`, `bot.load(dir?, bust?)`, `bot.loadLocales(dir?)`, `bot.start(token?)`, `bot.stop()`. `start` resolves the token from its argument, options, or `DISCORD_TOKEN`. `loadDefinitions(dir, bust?)` returns `{definitions, errors}` without registering anything.
 - `bot.prepareREST(token?)` loads definitions and plugins without opening a Gateway connection. Use `createInteractionHandler(bot, {publicKey, applicationId?, maxBodyBytes?, maxAge?})` for signed HTTP interactions in a long-running Node process. Mount it as a Fetch Request handler and supply the original raw request.
 - `definePlugin({name, requires?, definitions?, use?, setup?})` creates a feature bundle for `createBot({plugins})`. Setup runs before Gateway login or during REST preparation. Return a cleanup callback for reverse-order teardown. `messageCache({maxPerChannel?, lifetime?, interval?})` returns cache and sweeper options for `client`.
