@@ -1,0 +1,16 @@
+{
+  "name": "my-bot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch-path=./src bot.js",
+    "start": "node bot.js",
+    "check": "shiver check",
+    "sync": "shiver sync",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "discord.js": "^14.28.1",
+    "shiver-framework": "github:yuwxbt/shiver-framework"
+  }
+}

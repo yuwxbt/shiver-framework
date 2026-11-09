@@ -1,0 +1,36 @@
+Shiver Framework License 1.0
+Copyright (c) 2026 yuw
+
+This draft is not legal advice and should be reviewed by a lawyer before publication.
+
+You may use, copy, modify, and redistribute Shiver Framework and its documentation, including forks, at no charge. You may use and distribute it as part of a distinct product or service, including a commercial application built with it.
+
+You may not charge for or otherwise monetize the framework itself or a fork as a framework. This includes selling copies, charging for access to the source or binaries, paywalling framework functionality, or selling a hosted framework service. Packaging the framework with nominal additions does not make it a distinct product.
+
+Keep this license and the copyright notice with all copies and substantial portions, including those bundled in other products. Give recipients of a redistributed framework or fork these same permissions and conditions.
+
+The framework is provided as is, without express or implied warranty, including warranties of merchantability, fitness for a particular purpose, and noninfringement. To the extent permitted by law, the authors and copyright holders are not liable for claims, damages, or other liability arising from the framework or its use.
+
+Prior releases remain available under their original license. For material previously distributed under MIT, its existing permissions and notices continue to apply:
+
+MIT License
+
+Copyright (c) 2026 yuw
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

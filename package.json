@@ -1,0 +1,68 @@
+{
+  "name": "shiver-framework",
+  "version": "3.0.0",
+  "description": "A small, fast Discord bot framework on discord.js. One command definition for slash and prefix, every Discord component as a plain function, and errors that tell you how to fix them.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./testing": {
+      "types": "./types/testing.d.ts",
+      "default": "./src/testing.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./types/index.d.ts",
+  "bin": {
+    "shiver": "./bin/shiver.js"
+  },
+  "files": [
+    "src/",
+    "bin/",
+    "types/",
+    "docs/",
+    "templates/",
+    "AGENTS.md",
+    "llms.txt",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "typecheck": "tsc -p tsconfig.json",
+    "check": "npm test && npm run typecheck"
+  },
+  "peerDependencies": {
+    "discord.js": "^14.28.0"
+  },
+  "devDependencies": {
+    "discord.js": "^14.28.1",
+    "typescript": "^5.9.0"
+  },
+  "keywords": [
+    "discord",
+    "discord.js",
+    "discord-bot",
+    "bot",
+    "framework",
+    "slash-commands",
+    "components-v2",
+    "modals"
+  ],
+  "author": "yuwxd",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuwxbt/shiver-framework.git"
+  },
+  "homepage": "https://shiver.one",
+  "bugs": {
+    "url": "https://github.com/yuwxbt/shiver-framework/issues"
+  }
+}
